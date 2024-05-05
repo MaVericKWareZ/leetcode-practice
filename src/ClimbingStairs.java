@@ -1,7 +1,13 @@
 import java.util.Arrays;
 
 public class ClimbingStairs {
-    public int climbStairs(int n) {
+    public static void main(String[] args) {
+        int n = 5;
+        int res = climbStairs(n);
+        System.out.println("res=" + res);
+    }
+
+    public static int climbStairs(int n) {
         int[] stepCountArray = new int[n + 1];
         Arrays.fill(stepCountArray, Integer.MAX_VALUE);
         stepCountArray[0] = 1;
