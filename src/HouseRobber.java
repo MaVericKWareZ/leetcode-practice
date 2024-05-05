@@ -2,31 +2,43 @@ import java.util.Arrays;
 
 public class HouseRobber {
     public static void main(String[] args) {
-        int[] houses = { 2, 7, 9, 3, 1 };
+        int[] houses = { 1, 2, 3, 1 };
         int res = getMaxRobbery(houses);
+        int res2 = getMaxRobberyInCircularHouses(houses);
         System.out.println("res=" + res);
+        System.out.println("res2=" + res2);
     }
 
     public static int getMaxRobbery(int[] houses) {
         int houseCount = houses.length;
-        int[] maxRobberyValues = new int[houseCount];
-        Arrays.fill(maxRobberyValues, 0);
-        int maxRobbery = Integer.MIN_VALUE;
+        int prev = houses[0];
+        int prevPrev = 0;
         for (int index = 0; index < houseCount; index++) {
-
-            int currRoberry = houses[index];
-            maxRobberyValues[index] += currRoberry;
-            maxRobbery = Math.max(maxRobbery, maxRobberyValues[index]);
-            int nextHouseIndex = index + 2;
-            if (nextHouseIndex < houseCount) {
-                maxRobberyValues[nextHouseIndex] += maxRobbery;
-                maxRobbery = Math.max(maxRobbery, maxRobberyValues[nextHouseIndex]);
+            int take = houses[index];
+            if (index > 1) {
+                take += prevPrev;
             }
+            int skip = 0 + prev;
 
-            System.out.println("maxRobbery=" + maxRobbery + ", maxRobberyValues=" + Arrays.toString(maxRobberyValues));
+            int curr = Math.max(take, skip);
+            prevPrev = prev;
+            prev = curr;
 
         }
-        System.out.println(Arrays.toString(maxRobberyValues));
-        return maxRobbery;
+        return prev;
+    }
+
+    public static int getMaxRobberyInCircularHouses(int[] houses) {
+        int houseCount = houses.length;
+
+        if (houseCount == 1) {
+            return houses[0];
+        }
+
+        int[] firstSetHouses = Arrays.copyOfRange(houses, 0, houseCount - 1);
+        int[] secondSetHouses = Arrays.copyOfRange(houses, 1, houseCount);
+        System.out.println("firstSetHouses=" + Arrays.toString(firstSetHouses));
+        System.out.println("secondSetHouses=" + Arrays.toString(secondSetHouses));
+        return Math.max(getMaxRobbery(firstSetHouses), getMaxRobbery(secondSetHouses));
     }
 }
