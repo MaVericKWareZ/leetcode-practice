@@ -5,7 +5,7 @@ public class FrogJump {
         int[] jumpHeights = { 30, 10, 60, 10, 60, 50 };
         int res = minEnergyRequired(jumpHeights);
         int k = 2;
-        int res2 = minEnergyRequiredWithKJumps(jumpHeights, 2);
+        int res2 = minEnergyRequiredWithKJumps(jumpHeights, k);
         System.out.println("res=" + res);
         System.out.println("res2=" + res2);
     }
