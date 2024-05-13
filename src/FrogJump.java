@@ -2,7 +2,7 @@ import java.util.Arrays;
 
 public class FrogJump {
     public static void main(String[] args) {
-        int[] jumpHeights = { 30, 10, 60, 10, 60, 50 };
+        int[] jumpHeights = {30, 10, 60, 10, 60, 50};
         int res = minEnergyRequired(jumpHeights);
         int k = 2;
         int res2 = minEnergyRequiredWithKJumps(jumpHeights, k);

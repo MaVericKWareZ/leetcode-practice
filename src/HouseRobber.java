@@ -2,7 +2,7 @@ import java.util.Arrays;
 
 public class HouseRobber {
     public static void main(String[] args) {
-        int[] houses = { 1, 2, 3, 1 };
+        int[] houses = {1, 2, 3, 1};
         int res = getMaxRobbery(houses);
         int res2 = getMaxRobberyInCircularHouses(houses);
         System.out.println("res=" + res);

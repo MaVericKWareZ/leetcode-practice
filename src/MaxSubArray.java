@@ -1,6 +1,6 @@
 public class MaxSubArray {
     public static void main(String[] args) {
-        int[] nums = new int[] { -2, -3, 4, -1, -2, 1, 5, 3 };
+        int[] nums = new int[]{-2, -3, 4, -1, -2, 1, 5, 3};
         int sum = maxSubArray(nums);
         System.out.println("sum = " + sum);
     }

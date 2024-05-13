@@ -3,7 +3,7 @@ import java.util.Arrays;
 public class NinjaTraining {
     public static void main(String[] args) {
         int n = 3;
-        int[][] points = { { 1, 2, 5 }, { 3, 1, 1 }, { 3, 3, 3 } };
+        int[][] points = {{1, 2, 5}, {3, 1, 1}, {3, 3, 3}};
         int res = getMaxTrainingPoints(n, points);
         System.out.println("res=" + res);
     }

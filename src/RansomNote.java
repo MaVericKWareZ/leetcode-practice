@@ -10,7 +10,7 @@ public class RansomNote {
     }
 
     public static boolean canConstruct(String ransomNote, String magazine) {
-        if(magazine.length() < ransomNote.length()){
+        if (magazine.length() < ransomNote.length()) {
             return false;
         }
         HashMap<Character, Integer> magazineCounter = new HashMap<>();

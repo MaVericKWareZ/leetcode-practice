@@ -2,8 +2,8 @@ import java.util.Arrays;
 
 public class FindOptimalBlockToLive {
     public static void main(String[] args) {
-        int[] reqs = { 1, 2, 3 };
-        int[][] blocks = { { 0, 1, 0 }, { 1, 0, 0 }, { 1, 1, 0 }, { 0, 1, 0 }, { 0, 1, 1 } };
+        int[] reqs = {1, 2, 3};
+        int[][] blocks = {{0, 1, 0}, {1, 0, 0}, {1, 1, 0}, {0, 1, 0}, {0, 1, 1}};
         int res = findOptimalBlockToLive(blocks, reqs);
         System.out.println("res=" + res);
     }

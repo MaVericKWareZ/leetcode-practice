@@ -4,7 +4,7 @@ public class FirstOccurrenceInString {
     public static void main(String[] args) {
         String haystack = "a";
         String needle = "a";
-        int res = strStr(haystack,needle);
+        int res = strStr(haystack, needle);
         System.out.println("res = " + res);
     }
 
@@ -15,7 +15,7 @@ public class FirstOccurrenceInString {
             return 0;
         }
         for (int i = 0; i < haystackSize - needleSize + 1; i++) {
-            String word = haystack.substring(i, i+needleSize);
+            String word = haystack.substring(i, i + needleSize);
 //            System.out.println("word = " + word);
             if (word.equals(needle)) {
                 return i;

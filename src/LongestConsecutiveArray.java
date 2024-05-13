@@ -3,7 +3,7 @@ import java.util.HashSet;
 
 public class LongestConsecutiveArray {
     public static void main(String[] args) {
-        int[] arr = { 100, 102, 101, 100, 101, 4, 3, 2, 3, 2, 1, 1, 1, 2 };
+        int[] arr = {100, 102, 101, 100, 101, 4, 3, 2, 3, 2, 1, 1, 1, 2};
         int res = longestConsecutive(arr);
         int res1 = longestConsecutiveSorted(arr);
         System.out.println("res=" + res);
