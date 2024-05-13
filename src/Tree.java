@@ -1,35 +1,18 @@
 import java.util.ArrayList;
 import java.util.List;
 
-class TreeNode {
-    int data;
-    TreeNode left;
-    TreeNode right;
 
-    public TreeNode(int data) {
-        this.data = data;
-    }
-}
-
-class BinaryTreeModel {
-    TreeNode root;
-    int diameter;
-
-    public BinaryTreeModel(int data) {
-        this.root = new TreeNode(data);
-    }
-
-    public int maxDepth(TreeNode node) {
+public class Tree {
+    public static int maxDepth(TreeNode node) {
         if (node == null) {
             return 0;
         }
-
         int leftHeight = maxDepth(node.left);
         int rightHeight = maxDepth(node.right);
         return 1 + Math.max(leftHeight, rightHeight);
     }
 
-    public int balanced(TreeNode node) {
+    public static int balanced(TreeNode node) {
         if (node == null) {
             return 0;
         }
@@ -49,13 +32,13 @@ class BinaryTreeModel {
         return Math.max(rightHeight, leftHeight) + 1;
     }
 
-    public int getDiameter(TreeNode node) {
+    public static int getDiameter(TreeNode node) {
         int[] diameter = new int[1];
         recursiveDiameterCheck(node, diameter);
         return diameter[0];
     }
 
-    private int recursiveDiameterCheck(TreeNode node, int[] diameter) {
+    private static int recursiveDiameterCheck(TreeNode node, int[] diameter) {
         if (node == null) {
             return 0;
         }
@@ -68,7 +51,7 @@ class BinaryTreeModel {
     }
 
 
-    private int maxPath(TreeNode node, int[] maxPathSum) {
+    private static int maxPath(TreeNode node, int[] maxPathSum) {
         if (node == null) {
             return 0;
         }
@@ -79,21 +62,21 @@ class BinaryTreeModel {
         return node.data + Math.max(leftPath, rightPath);
     }
 
-    public int getMaxPathSum(TreeNode node) {
+    public static int getMaxPathSum(TreeNode node) {
         int[] maxPathSum = new int[1];
         maxPathSum[0] = Integer.MIN_VALUE;
         maxPath(node, maxPathSum);
         return maxPathSum[0];
     }
 
-    public boolean isIdentical(TreeNode node1, TreeNode node2) {
+    public static boolean isIdentical(TreeNode node1, TreeNode node2) {
         if (node1 == null || node2 == null) {
             return node1 == node2;
         }
         return (node1.data == node2.data) && isIdentical(node1.left, node2.left) && isIdentical(node1.right, node1.right);
     }
 
-    public List<Integer> pathToNode(TreeNode node, int target) {
+    public static List<Integer> pathToNode(TreeNode node, int target) {
         List<Integer> path = new ArrayList<>();
         if (node == null) {
             return path;
@@ -102,7 +85,7 @@ class BinaryTreeModel {
         return path;
     }
 
-    public boolean getPath(TreeNode node, int target, List<Integer> path) {
+    public static boolean getPath(TreeNode node, int target, List<Integer> path) {
         if (node == null) {
             return false;
         }
@@ -124,14 +107,10 @@ class BinaryTreeModel {
 
     }
 
-
-    public TreeNode invertTree(TreeNode root) {
-
+    public static TreeNode invertTree(TreeNode root) {
         if (root == null) {
             return null;
         }
-
-
         TreeNode left = invertTree(root.left);
         TreeNode right = invertTree(root.right);
 
@@ -139,40 +118,56 @@ class BinaryTreeModel {
         if (right != null) root.left = right;
 
         return root;
-
     }
 
-    public boolean isLeafNode(TreeNode node) {
+    public static boolean isLeafNode(TreeNode node) {
         return node.left == null && node.right == null;
     }
 
-    public boolean hasPathSum(TreeNode root, int targetSum) {
+    public static boolean hasPathSum(TreeNode root, int targetSum) {
         if (root == null) {
             return false;
         }
 
         boolean isLeaf = isLeafNode(root);
-
         if (isLeaf && targetSum == root.data) {
             return true;
         }
-
         int updatedSum = targetSum - root.data;
-
         boolean isPresentInLeftSubTree = hasPathSum(root.left, updatedSum);
-
         boolean isPresentInRightSubTree = hasPathSum(root.right, updatedSum);
 
-
         return isPresentInLeftSubTree || isPresentInRightSubTree;
-
-
     }
-}
 
-public class Tree {
+    public static TreeNode getLowestCommonAncestor(TreeNode root, TreeNode node1, TreeNode node2) {
+        if (root == null) {
+            return null;
+        }
+
+        int data = root.data;
+        if (data == node1.data || data == node2.data) {
+            return root;
+        }
+
+        TreeNode left = getLowestCommonAncestor(root.left, node1, node2);
+        TreeNode right = getLowestCommonAncestor(root.right, node1, node2);
+
+        if (left == null && right == null) {
+            return null;
+        }
+        if (right == null) {
+            return left;
+        }
+        if (left == null) {
+            return right;
+        }
+
+        return root;
+    }
+
     public static void main(String[] args) {
-        BinaryTreeModel tree = new BinaryTreeModel(1);
+        BinaryTree tree = new BinaryTree(1);
         TreeNode root = tree.root;
         root.left = new TreeNode(2);
         root.right = new TreeNode(3);
@@ -184,17 +179,17 @@ public class Tree {
         root.right.right.left = new TreeNode(9);
         root.right.right.right = new TreeNode(10);
 
-        int height = tree.maxDepth(root);
+        int height = maxDepth(root);
         System.out.println("height = " + height);
-        int balanced = tree.balanced(root);
+        int balanced = balanced(root);
         System.out.println("balanced = " + balanced);
-        int diameter = tree.getDiameter(root);
+        int diameter = getDiameter(root);
         System.out.println("diameter = " + diameter);
-        int maxPathSum = tree.getMaxPathSum(root);
+        int maxPathSum = getMaxPathSum(root);
         System.out.println("maxPathSum = " + maxPathSum);
 
         TreeNode root1 = new TreeNode(-3);
-        int max = tree.getMaxPathSum(root1);
+        int max = getMaxPathSum(root1);
         System.out.println("max = " + max);
 
 
