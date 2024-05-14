@@ -9,11 +9,21 @@ public class ReverseList {
         head.next.next.next.next.next = new ListNode(6);
 
         ListNode reverseList = getReverseList(head);
-        while (reverseList != null) {
-            System.out.print(reverseList.data + " ");
-            reverseList = reverseList.next;
-        }
+        System.out.println("reverseList = " + reverseList);
+        LinkedListModel.printLinkedList(reverseList);
+        System.out.println("reverseList = " + reverseList);
+        ListNode reverseRecursive = getReverseListRecursive(head);
+        LinkedListModel.printLinkedList(reverseRecursive);
 
+    }
+
+    private static ListNode getReverseListRecursive(ListNode head) {
+        if (head == null || head.next == null) return head;
+        ListNode newHead = getReverseListRecursive(head.next);
+        ListNode front = head.next;
+        front.next = head;
+        head.next = null;
+        return newHead;
     }
 
     private static ListNode getReverseList(ListNode head) {
