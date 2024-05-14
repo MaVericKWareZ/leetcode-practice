@@ -166,6 +166,16 @@ public class Tree {
         return root;
     }
 
+    public static void getRootToLeafSum(TreeNode node, int[] leafPathSum, int current) {
+        if (node == null) return;
+        boolean isLeaf = isLeafNode(node);
+        if (isLeaf) leafPathSum[0] += (current * 10 + node.data);
+        current = current * 10 + node.data;
+        getRootToLeafSum(node.left, leafPathSum, current);
+        getRootToLeafSum(node.right, leafPathSum, current);
+
+    }
+
     public static void main(String[] args) {
         BinaryTree tree = new BinaryTree(1);
         TreeNode root = tree.root;
@@ -192,6 +202,15 @@ public class Tree {
         int max = getMaxPathSum(root1);
         System.out.println("max = " + max);
 
+        int sum = sumNumbers(root);
+        System.out.println("sum = " + sum);
 
+    }
+
+    public static Integer sumNumbers(TreeNode root) {
+        int[] leafPathSum = new int[1];
+        int current = 0;
+        getRootToLeafSum(root, leafPathSum, current);
+        return leafPathSum[0];
     }
 }
