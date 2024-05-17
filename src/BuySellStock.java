@@ -14,9 +14,7 @@ public class BuySellStock {
         int currProfit = Integer.MIN_VALUE;
         int currMin = Integer.MAX_VALUE;
         for (int i = 0; i < days; i++) {
-            if (currMin > prices[i]) {
-                currMin = prices[i];
-            }
+            currMin = Math.min(currMin, prices[i]);
             currProfit = prices[i] - currMin;
 
             if (currProfit > maxProfit) {

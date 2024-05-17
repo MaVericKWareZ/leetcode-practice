@@ -43,5 +43,4 @@ class RomanToInt {
         }
         return total;
     }
-
 }

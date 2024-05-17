@@ -17,7 +17,7 @@ public class ThreeSum {
         for (int firstPos = 0; firstPos < size; firstPos++) {
             HashSet<Integer> tempSet = new HashSet<>();
             for (int secondPos = firstPos + 1; secondPos < size; secondPos++) {
-                int thirdNum = 0 - (nums[firstPos] + nums[secondPos]);
+                int thirdNum = -(nums[firstPos] + nums[secondPos]);
                 if (tempSet.contains(thirdNum)) {
                     List<Integer> threeSunList = new ArrayList<>();
                     threeSunList.add(nums[firstPos]);
